@@ -18,10 +18,10 @@ ENV DEBUG=True
 COPY . /usr/app
 
 # collecting static files
-RUN python manage.py runserver 0.0.0.0:8000
+RUN python manage.py collectstatic --no-input
 
 # run application
-CMD ["gunicorn", "--bind", "0.0.0.0:8000","config.wsgi:application"]
+CMD ["gunicorn", "--bind", "0.0.0.0:8000","Shop.wsgi:application"]
 
 EXPOSE 8000
 RUN python manage.py collectstatic --no-input
